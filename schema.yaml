@@ -1,0 +1,23 @@
+version: "0.1.0"
+index:
+  name: "postop:index"
+  prefix: "postop:doc:"
+  storage_type: "hash"
+fields:
+  - name: "patient_id"
+    type: "tag"
+  - name: "kind"
+    type: "tag"
+  - name: "text"
+    type: "text"
+  - name: "embedding"
+    type: "vector"
+    attrs:
+      dims: 384
+      algorithm: "hnsw"
+      distance_metric: "cosine"
+      datatype: "float32"
+      m: 16
+      ef_construction: 200
+      
+

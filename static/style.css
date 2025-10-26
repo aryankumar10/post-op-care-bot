@@ -1,0 +1,125 @@
+html,body{height:100%}
+:root {
+  --brand-blue: #2563eb;
+  --brand-blue-light: #eff6ff;
+}
+body {
+  background-color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ----- NEW: Chat bubble animation ----- */
+.message-wrap-new {
+  animation: slide-in 0.4s ease-out forwards;
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- LOADING ANIMATIONS ----- */
+.spinner {
+  width: 18px;height: 18px;border:3px solid rgba(255, 255, 255, 0.4); /* Lighter for buttons */
+  border-top-color: #fff; border-radius:50%;
+  animation: spin .9s linear infinite;
+}
+/* Spinner for login button (darker) */
+.spinner-dark {
+  width: 18px;height: 18px;border:3px solid rgba(15, 23, 42, 0.15);
+  border-top-color: var(--brand-blue); border-radius:50%;
+  animation: spin .9s linear infinite;
+}
+
+/* Typing indicator animation */
+.dot-flashing {
+  position: relative;
+  width: 10px; height: 10px;
+  border-radius: 5px;
+  background-color: #94a3b8;
+  color: #94a3b8;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+.dot-flashing::before, .dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.dot-flashing::before {
+  left: -15px;
+  width: 10px; height: 10px;
+  border-radius: 5px;
+  background-color: #94a3b8;
+  color: #94a3b8;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+.dot-flashing::after {
+  left: 15px;
+  width: 10px; height: 10px;
+  border-radius: 5px;
+  background-color: #94a3b8;
+  color: #94a3b8;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+@keyframes dot-flashing {
+  0% { background-color: #94a3b8; }
+  50%, 100% { background-color: #e2e8f0; }
+}
+
+/* ----- POPUP/TOAST ANIMATIONS ----- */
+#popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  z-index: 1000;
+}
+#popup.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Success/Error checkmark/X animations */
+.popup-icon-success {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw-check 0.4s 0.1s ease-out forwards;
+}
+.popup-icon-error {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw-x 0.4s 0.1s ease-out forwards;
+}
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes draw-x {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ----- STYLING UPDATES ----- */
+.inp {
+  padding:.5rem .75rem; border:1px solid #cbd5e1;
+  border-radius:.5rem;
+  background:#fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.inp:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 2px var(--brand-blue-light);
+}
+.bubble-user {
+  background-color: var(--brand-blue);
+  color: white;
+}
+.bubble-assistant {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
