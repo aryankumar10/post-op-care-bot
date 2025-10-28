@@ -8,6 +8,8 @@ from sentence_transformers import SentenceTransformer
 from redisvl.query import VectorQuery
 from redisvl.query.filter import Tag
 
+from dotenv import load_dotenv
+load_dotenv()
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:8001")
 SCHEMA_PATH = os.getenv("SCHEMA_PATH", "schema.yaml")
@@ -20,6 +22,7 @@ RETURN_FIELDS = ["patient_id", "kind", "text", "vector_distance"]
 _model = None
 
 async def get_redis():
+    print(REDIS_URL)
     return redis.from_url(REDIS_URL, encoding="utf-8", decode_responses=False)
 
 def get_embedder():
