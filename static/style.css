@@ -8,7 +8,21 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* ----- NEW: Chat bubble animation ----- */
+#chatForm button:disabled, 
+#chatForm button.is-disabled {
+    opacity: 0.6; 
+    
+    pointer-events: none; 
+    
+    box-shadow: none !important; 
+    cursor: default;
+}
+
+#chatForm button.is-disabled:hover {
+    background-color: #2563EB !important; /* Keep the original background color */
+}
+
+/* ----- Chat bubble animation ----- */
 .message-wrap-new {
   animation: slide-in 0.4s ease-out forwards;
 }

@@ -252,20 +252,21 @@ async def chat(body: ChatMsg, patient_id: str = Depends(verify_token)):
 
         --- Special Conversational Rules ---
         - If the user says "hi", "hello", or "hey":
-          - Set "triage_level": 1.
-          - Set "assistant": "Hello! I'm here to help with your post-operative questions. Please remember to take your medications in a timely manner. We are here for you if you need anything."
-          - Set "alert": false.
+        - Set "triage_level": 1.
+        - Set "assistant": "Hello! I'm here to help with your post-operative questions. We are here for you if you need anything."
+        - Set "alert": false.
         - If the user says "thanks" or "thank you":
-          - Set "triage_level": 1.
-          - Set "assistant": "You're very welcome! We are here for you if you have any other questions."
-          - Set "alert": false.
+        - Set "triage_level": 1.
+        - Set "assistant": "You're very welcome! We are here for you if you have any other questions."
+        - Set "alert": false.
         - If the user says "bye" or "goodbye":
-          - Set "triage_level": 1.
-          - Set "assistant": "Goodbye! Take care and please let us know if anything comes up. We are here for you."
-          - Set "alert": false.
-        
+        - Set "triage_level": 1.
+        - Set "assistant": "Goodbye! Take care and please remember to stay on track with your prescribed medications. We are here for you."
+        - Set "alert": false.
+
         --- General Rules ---
         - For all other medical or recovery questions, use the Triage Rules.
+        - **NEVER** mention medications, dosage, or frequency unless the patient explicitly asks about their medication OR the response is a sign-off (Bye/Goodbye).
         - Never invent medications; quote names/dose/frequency only from context.
         - If info is missing, say so and include clinician contact.
         - Always sound caring and reassuring.

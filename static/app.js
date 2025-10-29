@@ -57,7 +57,12 @@ $("logoutBtn").onclick = () => {
   messages.innerHTML = "";
   chatWrap.classList.remove("hidden");
   adminCard.classList.add("hidden");
-  showApp(false); uiRefresh();
+  
+  $("userId").value = "";
+  $("password").value = ""; 
+
+  showApp(false); 
+  uiRefresh();
 };
 
 // ---- login ----
@@ -133,10 +138,12 @@ $("chatForm").addEventListener("submit", async (e) => {
 
   input.disabled = true;
   btn.disabled = true;
-  btn.innerHTML = `<span class="spinner"></span>`; // Show spinner
-  btn.classList.add('inline-flex', 'items-center', 'justify-center');
-
+  // btn.innerHTML = `<span class="spinner"></span>`; // Show spinner
+  // btn.classList.add('inline-flex', 'items-center', 'justify-center');
+  btn.classList.add('is-disabled');
   input.value = "";
+  btn.innerHTML = `Wait`;
+
   pushMsg("user", text);
   setLoading(true);
 
@@ -184,10 +191,11 @@ $("chatForm").addEventListener("submit", async (e) => {
     setLoading(false); // Ensure loading is turned off on error
     showPopup(err.message || String(err), true);
   } finally {
+    btn.classList.remove('is-disabled');
     input.disabled = false;
     btn.disabled = false;
     btn.innerHTML = `Send`;
-    btn.classList.remove('inline-flex', 'items-center', 'justify-center');
+    // btn.classList.remove('inline-flex', 'items-center', 'justify-center');
   }
 });
 
